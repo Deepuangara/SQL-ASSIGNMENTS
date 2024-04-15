@@ -103,8 +103,8 @@ create table Inventory (
 	/*5*/ 
 DECLARE @InputOrderID INT; 
 SET @InputOrderID = 1;
-delete from Orders where OrderId= @InputOrderID
-delete from OrderDetails where OrderId= @InputOrderID
+delete from Orders where OrderId= 1001
+delete from OrderDetails where OrderId= 1001
 
 
 /*6*/ 
@@ -114,7 +114,7 @@ insert into Orders values(1011,111,'2024-04-08',5000)
 declare @InputEmail varchar(30), @InputCustomerID int
 set @InputEmail = 'jack123@email.com'
 set @InputCustomerID=101
-update Customers set Email=@InputEmail where CustomerID=@InputCustomerID
+update Customers set Email='satish@gmail.com' where CustomerID=101
 select * from Customers
 
 /*8*/
@@ -131,7 +131,7 @@ delete from Orders where CustomerId= @InputCustomerID
 delete from OrderDetails where CustomerId= @InputCustomerID
 
 /*10*/
-
+insert into Products values(1012,'iphone','electronic',150000,1,3)
 
 /*11*/
 alter table orders add status varchar(10) 
@@ -214,7 +214,7 @@ select c.firstname from Customers c
 join orders o on o.customerID=c.CustomerID
 join OrderDetails od on od.OrderID=o.orderID
 join Products p on p.ProductID=od.ProductID
-where ProductName=@InputProname
+where ProductName= 'keyboard'
 
 /*10*/
 declare @InputStartdate date, @InputEnddate date
@@ -222,7 +222,7 @@ set @InputStartdate='2022-4-20'
 set @InputEnddate='2024-01-10'
 select sum(o.totalamount) as totalrevenue
 from orders o
-where o.orderdate between @InputStartdate and @InputEnddate
+where o.orderdate between '02-05-2024' and '02-06-2024'
 
 /*task-4*/
 
@@ -245,14 +245,14 @@ set @Inputcategoryname='computers';
 select avg(od.quantity) as averagequantity from orderdetails od
 inner join products p on od.productid = p.productid
 where p.categoryid=
-(select c.categoryid from category c where c.categoryname=@Inputcategoryname)
+(select c.categoryid from category c where c.categoryname='electronicgadgets')
 
 /*5*/
 declare @InputcustomerID int
 set @InputcustomerID=104;
 select sum(o.TotalAmount) as TotalAmount
 from Orders o
-where o.CustomerID=@InputcustomerID
+where o.CustomerID=104
 
 /*6 not crt*/
 select c.FirstName,o.noofOrders from Customers c
